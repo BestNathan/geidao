@@ -1,10 +1,18 @@
-const axios = require('axios').default;
-axios.defaults.validateStatus = status => status < 500
-axios.get('https://aipi.guanaitong.com')
-    .then(data => {
-        console.log(data.data);
-    })
-    .catch(e => {
-        console.log('error');
-        console.log(e.response.data);
-    })
+const {redis, geidao} = require('./lib/service');
+const hub = require('./lib/hub');
+
+async function main() {
+    const users = await geidao.getUsers();
+    console.log('users length: ', users.length);
+
+    for (const user of users) {
+        await geidao.cheat(user)
+        console.log('%s done', user.username);
+    }
+
+    await redis.setTomorrowKey();
+}
+
+main();
+
+hub.on('run', main)

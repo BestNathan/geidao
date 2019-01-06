@@ -11,6 +11,11 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.18.0",
-    "node-rsa": "^1.0.2"
+    "config": "^3.0.1",
+    "ioredis": "^4.3.0",
+    "moment": "^2.23.0",
+    "mongoose": "^5.4.2",
+    "node-rsa": "^1.0.2",
+    "uuid": "^3.3.2"
   }
 }
